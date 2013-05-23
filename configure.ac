@@ -1,0 +1,58 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([polymino], [0.1])
+AM_INIT_AUTOMAKE([1.13 foreign no-dist-gzip dist-xz])
+AC_CONFIG_SRCDIR([src/polymino.vala])
+AC_CONFIG_HEADERS([config.h])
+
+# Simplifies the verbosity of the compilation output.
+# m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
+
+# Checks for programs.
+AC_PROG_CC
+AM_PROG_VALAC([0.20])
+# Checks for libraries.
+
+PKG_PROG_PKG_CONFIG([0.22])
+
+AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
+# GLIB_GSETTINGS
+
+# Checks for modules.
+pkg_modules="glib-2.0 \
+             gmodule-2.0 \
+             gee-1.0 \
+             gtk+-3.0"
+
+PKG_CHECK_MODULES(POLYMINO, [$pkg_modules])
+# This variables are defined by pkg-config modules
+# AC_SUBST(POLYMINO_CFLAGS)
+# AC_SUBST(POLYMINO_LIBS)
+
+
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+AC_CONFIG_FILES([Makefile
+                 data/Makefile
+                 src/Makefile])
+AC_OUTPUT
+
+echo "
+ 
+configuration summary:
+ 
+for package: ${PACKAGE}, Ver.: ${VERSION}
+
+source code location:......... ${srcdir} 
+compiler:..................... ${CC}
+valac:........................ ${VALAC}
+vapigen:...................... ${VAPIGEN}
+prefix:....................... ${prefix}
+compiler flags:............... ${CFLAGS}
+compiler pre-processor flags:. ${CPPFLAGS}
+"
