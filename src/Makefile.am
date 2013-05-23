@@ -4,7 +4,7 @@ bin_PROGRAMS = \
 BUILT_SOURCES = \
 	resources.c
 
-resources.c: $(top_srcdir)/data/polymino.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies  $(top_srcdir)/data/polymino.gresource.xml)
+resources.c: $(top_srcdir)/data/polymino.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(top_srcdir)/data $(top_srcdir)/data/polymino.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(top_srcdir)/data --generate-source $<
 
 polymino_SOURCES = \
