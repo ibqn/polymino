@@ -1,0 +1,7 @@
+data/org.el.polymino.gschema.xml.in.in
+src/application.vala
+src/window.vala
+src/polymino.vala
+[type: gettext/glade]data/ui/window.ui
+
+
