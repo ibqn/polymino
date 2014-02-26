@@ -127,14 +127,14 @@ namespace El {
 			cr.fill( );
 
             cr.set_source_rgb( this.grid_line.red, this.grid_line.green, this.grid_line.blue );
-            //cr.set_line_width( 2 );
+            cr.set_line_width( 2 );
             for( int i = 1; i < frame_width; i ++ ) {
                 cr.move_to( ox + i * square_width, oy );
                 cr.line_to( ox + i * square_width, oy + h );
             }
-            for( int i = 1; i < this.frame_height; i ++ ) {
+            for( int i = 1; i < frame_height; i ++ ) {
                 cr.move_to( ox, oy + i * square_height );
-                cr.line_to( ox + w, oy + i * square_height);
+                cr.line_to( ox + w, oy + i * square_height );
             }
             cr.stroke( );
 
