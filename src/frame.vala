@@ -21,7 +21,7 @@ namespace El {
 		private int frame_width;
 		private int frame_height;
 
-		private Point cur_point;
+		private El.Point cur_point;
 
 		private double ratio;
 
@@ -34,10 +34,11 @@ namespace El {
 		private bool is_started;
 		private bool is_paused;
 
-		private Shape cur_shape;
-		private Shape next_shape;
+		private El.Shape cur_shape;
+		private El.Shape next_shape;
 
-		private Color background;
+		private El.Color background;
+        private El.Color grid_line;
 
 		private Gee.LinkedList<Gee.LinkedList<int>> frame;
 		
@@ -65,7 +66,8 @@ namespace El {
 
 			this.create_frame( );
 
-			this.background = { 0.3, 0.7, 0.2 };
+			this.background = { 0.094117647, 0.094117647, 0.094117647 };
+            this.grid_line = { 0.188235294, 0.188235294, 0.188235294 };
 		}
 
         private void create_frame( ) {
@@ -123,6 +125,18 @@ namespace El {
 			cr.set_source_rgb( this.background.red, this.background.green, this.background.blue );
 			cr.rectangle( ox, oy, w, h );
 			cr.fill( );
+
+            cr.set_source_rgb( this.grid_line.red, this.grid_line.green, this.grid_line.blue );
+            //cr.set_line_width( 2 );
+            for( int i = 1; i < frame_width; i ++ ) {
+                cr.move_to( ox + i * square_width, oy );
+                cr.line_to( ox + i * square_width, oy + h );
+            }
+            for( int i = 1; i < this.frame_height; i ++ ) {
+                cr.move_to( ox, oy + i * square_height );
+                cr.line_to( ox + w, oy + i * square_height);
+            }
+            cr.stroke( );
 
 			if( this.cur_shape.id != Shape.EMPTY ) {
 				//stdout.printf( "drawing shape\n" );
