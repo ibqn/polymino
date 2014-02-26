@@ -1,0 +1,40 @@
+<schemalist gettext-domain="@GETTEXT_PACKAGE@">
+  <enum id="org.el.polymino.position_type">
+    <value nick="default" value="0"/>
+    <value nick="center" value="1"/>
+    <value nick="save" value="2"/>
+  </enum>
+  <schema id="org.el.polymino.state" path="/org/el/polymino/state/">
+    <child schema="org.el.polymino.state.window" name="window"/>
+  </schema>
+  <schema id="org.el.polymino.state.window" path="/org/el/polymino/state/window/">
+    <key type="i" name="state">
+      <default>0</default>
+      <_summary>Window state</_summary>
+      <_description>
+        State of the window: i.e. maximized.
+      </_description>
+    </key>
+    <key type="(ii)" name="size">
+      <default>(300, 600)</default>
+      <_summary>Window width and height</_summary>
+      <_description>
+        Width and height of the window.
+      </_description>
+    </key>
+    <key type="(ii)" name="position">
+      <default>(-1, -1)</default>
+      <_summary>Window position</_summary>
+      <_description>
+        X and Y position of the window.
+      </_description>
+    </key>
+    <key enum="org.el.polymino.position_type" name="position-type">
+      <default>"save"</default>
+      <_summary>Position state</_summary>
+      <_description>
+        Current position state.
+      </_description>
+    </key>
+  </schema>
+</schemalist>
