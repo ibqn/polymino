@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.0 on Fri Sep 27 14:46:03 2013 -->
+<interface>
+  <!-- interface-requires gtk+ 3.10 -->
+  <template class="ElWindow" parent="GtkApplicationWindow">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Polymino</property>
+    <property name="default_width">300</property>
+    <property name="default_height">600</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header_bar">
+        <property name="visible">True</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">False</property>
+        <property name="show_close_button">True</property>
+        <style>
+          <class name="titlebar"/>
+        </style>
+        <child type="title">
+          <object class="GtkStackSwitcher" id="stack_switcher">
+            <property name="visible">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="new_game">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="tooltip_text" translatable="yes">Start a new game</property>
+            <property name="action_name">win.new-game</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="new_game_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_name">media-playback-start-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">start</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="ElFrame" id="frame">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
