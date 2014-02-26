@@ -10,15 +10,22 @@ AC_CONFIG_HEADERS([config.h])
 # Simplifies the verbosity of the compilation output.
 # m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
+# I18n
+IT_PROG_INTLTOOL(0.50.0)
+
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_CC_STDC
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
 AM_PROG_VALAC([0.20])
 # Checks for libraries.
 
 PKG_PROG_PKG_CONFIG([0.22])
 
 AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
-# GLIB_GSETTINGS
+
+GLIB_GSETTINGS
 
 # Checks for modules.
 pkg_modules="glib-2.0 \
@@ -39,6 +46,8 @@ PKG_CHECK_MODULES(POLYMINO, [$pkg_modules])
 
 AC_CONFIG_FILES([Makefile
                  data/Makefile
+                 po/Makefile.in
+                 data/org.el.polymino.gschema.xml.in
                  src/Makefile])
 AC_OUTPUT
 
