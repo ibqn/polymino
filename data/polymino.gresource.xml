@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/polymino">
-    <file preprocess="xml-stripblanks">polymino.glade</file>
+  <gresource prefix="/org/el/polymino">
+    <file>css/styles.css</file>
+    <file preprocess="xml-stripblanks">ui/window.ui</file>
   </gresource>
 </gresources>

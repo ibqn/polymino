@@ -8,11 +8,14 @@ resources.c: $(top_srcdir)/data/polymino.gresource.xml $(shell $(GLIB_COMPILE_RE
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(top_srcdir)/data --generate-source $<
 
 polymino_SOURCES = \
-        $(BUILT_SOURCES) \
+	$(BUILT_SOURCES) \
+	application.vala \
+	window.vala \
 	frame.vala \
-        piece.vala \
-        polymino.vala \
-	config.vapi
+	piece.vala \
+	polymino.vala \
+	config.vapi \
+	$(NULL)
 
 AM_LDFLAGS = \
 	$(POLYMINO_LIBS)
@@ -25,11 +28,13 @@ AM_CPPFLAGS =
 
 
 AM_VALAFLAGS = \
-	--target-glib=2.36 \
+	--target-glib=2.38 \
 	--pkg gee-1.0 \
         --pkg gmodule-2.0 \
         --enable-experimental \
-	--pkg gtk+-3.0
+	--pkg gtk+-3.0 \
+	--gresources  $(top_srcdir)/data/polymino.gresource.xml \
+	$(NULL)
 
 CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
