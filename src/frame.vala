@@ -1,21 +1,39 @@
+ /*
+  * Copyright (c) 2014 Evgeny Bobkin <evgen.ibqn@gmail.com>
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by the
+  * Free Software Foundation; either version 2 of the License, or (at your
+  * option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful, but
+  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+  * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  * for more details.
+  *
+  * You should have received a copy of the GNU General Public License along
+  * with this program; if not, write to the Free Software Foundation,
+  * Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  */
+
 namespace El {
 	class Frame : Gtk.DrawingArea {
 		private int frame_width;
 		private int frame_height;
 
 		private Point cur_point;
-		
+
 		private double ratio;
-		
+
 		private double square_width;
 		private double square_height;
-		
+
 		private uint timeout_id;
 		private int timeout;
-		
+
 		private bool is_started;
 		private bool is_paused;
-		
+
 		private Shape cur_shape;
 		private Shape next_shape;
 
@@ -23,7 +41,7 @@ namespace El {
 
 		private Gee.LinkedList<Gee.LinkedList<int>> frame;
 		
-		public Frame( ) {
+		construct {
 			this.expand = true;
 			this.can_focus = true;
 	
@@ -50,7 +68,7 @@ namespace El {
 			this.background = { 0.3, 0.7, 0.2 };
 		}
 
-		private void create_frame( ) {
+        private void create_frame( ) {
 			this.frame = new Gee.LinkedList<Gee.LinkedList<int>>( );
 			for( int i = 0; i < this.frame_height; i ++ ) {
 				add_empty_line( );	
