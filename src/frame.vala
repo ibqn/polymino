@@ -40,9 +40,10 @@ namespace El {
 		private El.Color background;
         private El.Color grid_line;
 
-        private int lines_num;
+        public int lines_num {
+            get; private set;
+        }
 
-        public signal void line_removed( int lines_num );
         public signal void new_shape( int shape_id );
 
 		private Gee.LinkedList<Gee.LinkedList<int>> frame;
@@ -248,9 +249,10 @@ namespace El {
 		private void remove_full_lines( ) {
 			foreach( Gee.LinkedList<int> line in this.frame ) {
 				if( !(Shape.EMPTY in line) ) {
-					stdout.printf( "line is full\n" );
                     lines_num ++;
-                    line_removed( lines_num );
+                    stdout.printf( "line is full; num %i\n", lines_num );
+
+                    //line_removed( lines_num );
 					this.frame.remove( line );
 
 					add_empty_line( );
@@ -296,7 +298,6 @@ namespace El {
 					this.set_shape_at( Shape.EMPTY, p );
 
             lines_num = 0;
-            line_removed( lines_num );
 		}
 
 		public void new_game_cb( ) {
@@ -305,7 +306,6 @@ namespace El {
 			
 			this.is_started = true;
 
-			//create_frame( );
 			clear_frame( );
 			create_new_shape( );
 			start_timer( );

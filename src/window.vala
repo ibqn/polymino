@@ -70,9 +70,9 @@ namespace El {
                 break;
             };
 
-            frame.line_removed.connect( (num) => {
-                lines_label.set_text( num.to_string( ) );
-            } );
+            frame.notify["lines-num"].connect(( sender, property ) => {
+                lines_label.set_text( frame.lines_num.to_string( ) );
+            });
 
             preview.set_frame( frame );
 
