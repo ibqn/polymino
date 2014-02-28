@@ -207,13 +207,18 @@ namespace El {
 	public struct Point {
 		public int x;
 		public int y;
-		
-		/*
-		public Point( int x, int y ) {
-			this.x = x;
-			this.y = y;
+
+		public Point copy_inc_y( ) {
+		    return Point( ) { x = this.x, y = this.y + 1 };
 		}
-		*/
+
+		public Point copy_inc_x( ) {
+		    return Point( ) { x = this.x + 1, y = this.y };
+		}
+
+		public Point copy_dec_x( ) {
+		    return Point( ) { x = this.x - 1, y = this.y };
+		}
 	}
 	
 	public struct Shape {

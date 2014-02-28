@@ -190,9 +190,9 @@ namespace El {
                 shape.rotate_left( );
                 try_move( shape, this.cur_point );
             } else if( event.keyval == Gdk.Key.Left ) {
-                try_move( this.cur_shape, Point( ) { x = this.cur_point.x - 1, y = this.cur_point.y } );
+                try_move( this.cur_shape, this.cur_point.copy_dec_x( ) );
             } else if( event.keyval == Gdk.Key.Right ) {
-                try_move( this.cur_shape, Point( ) { x = this.cur_point.x + 1, y = this.cur_point.y } );
+                try_move( this.cur_shape, this.cur_point.copy_inc_x( ) );
             } else if( event.keyval == Gdk.Key.space ) {
                 fall_down( );
             } else if( event.keyval == Gdk.Key.d ) {
@@ -223,12 +223,14 @@ namespace El {
         }
 
         private void one_line_down( ) {
-            if( !try_move( this.cur_shape, Point( ) { x = this.cur_point.x, y = this.cur_point.y + 1 } ) )
+            if( !try_move( this.cur_shape, this.cur_point.copy_inc_y( ) ) ) {
                 update_frame( );
+            }
         }
 
         private void fall_down( ) {
-            while( try_move( this.cur_shape, Point( ) { x = this.cur_point.x, y = this.cur_point.y + 1 } ) );
+            while( try_move( this.cur_shape, this.cur_point.copy_inc_y( ) ) );
+
             update_frame( );
         }
 
@@ -251,7 +253,6 @@ namespace El {
                     lines_num ++;
                     stdout.printf( "line is full; num %i\n", lines_num );
 
-                    //line_removed( lines_num );
                     this.frame.remove( line );
 
                     add_empty_line( );
