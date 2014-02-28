@@ -33,7 +33,7 @@ namespace El {
         construct {
             frame_width = 100.0;
             frame_height = 80.0;
-            
+
             set_size_request( (int)frame_width, (int)frame_height );
 
             width = 5;
@@ -51,7 +51,6 @@ namespace El {
             this.frame.new_shape.connect( (id) => {
                 shape_id = id;
 
- 
                 shape.set_shape( shape_id );
 
                 point.x = ( width - shape.max.x ) / 2;
@@ -62,16 +61,16 @@ namespace El {
         }
 
         private void draw_square( Cairo.Context cr, double x, double y, int shape_id ) {
-			Color color = El.PieceFactory.pieces[shape_id].color;
-			cr.set_source_rgb( color.red, color.green, color.blue );
-			cr.rectangle( x + 1, y + 1, square_width - 2, square_height - 2 );
-			cr.fill( );
-		}
+            Color color = El.PieceFactory.pieces[shape_id].color;
+            cr.set_source_rgb( color.red, color.green, color.blue );
+            cr.rectangle( x + 1, y + 1, square_width - 2, square_height - 2 );
+            cr.fill( );
+        }
 
         public override bool draw( Cairo.Context cr ) {
             cr.set_source_rgb( 0.094117647, 0.094117647, 0.094117647 );
-			cr.rectangle( 0.0, 0.0, frame_width, frame_height );
-			cr.fill( );
+            cr.rectangle( 0.0, 0.0, frame_width, frame_height );
+            cr.fill( );
 
             cr.set_source_rgb( 0.188235294, 0.188235294, 0.188235294 );
             cr.set_line_width( 1 );
@@ -84,7 +83,7 @@ namespace El {
                 cr.line_to( frame_width, i * square_height );
             }
             cr.stroke( );
-            
+
             double x, y;
             if( shape_id != El.Shape.EMPTY ) {
                 foreach( var p in shape.coordinates ) {
