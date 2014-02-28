@@ -12,6 +12,7 @@ polymino_SOURCES = \
 	application.vala \
 	window.vala \
 	frame.vala \
+	preview.vala \
 	piece.vala \
 	polymino.vala \
 	config.vapi \
