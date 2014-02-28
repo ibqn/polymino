@@ -21,6 +21,10 @@ namespace El {
     public class Window : Gtk.ApplicationWindow {
         [GtkChild]
         private El.Frame frame;
+        [GtkChild]
+        private Gtk.Label lines_label;
+        [GtkChild]
+        private El.Preview preview;
         private GLib.Settings settings;
         private const GLib.ActionEntry[] action_entries = {
             { "new-game", new_game_callback },
@@ -65,6 +69,12 @@ namespace El {
                 assert_not_reached( );
                 break;
             };
+
+            frame.line_removed.connect( (num) => {
+                lines_label.set_text( num.to_string( ) );
+            } );
+
+            preview.set_frame( frame );
 
             new_game_callback( );
         }

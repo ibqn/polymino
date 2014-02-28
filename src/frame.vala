@@ -40,6 +40,11 @@ namespace El {
 		private El.Color background;
         private El.Color grid_line;
 
+        private int lines_num;
+
+        public signal void line_removed( int lines_num );
+        public signal void new_shape( int shape_id );
+
 		private Gee.LinkedList<Gee.LinkedList<int>> frame;
 		
 		construct {
@@ -47,7 +52,7 @@ namespace El {
 			this.can_focus = true;
 	
 			this.add_events( Gdk.EventMask.KEY_PRESS_MASK );
-			
+
 			this.frame_height = 22;
 			this.frame_width = 10;
 			this.ratio = (double)this.frame_height / (double)this.frame_width;
@@ -57,9 +62,9 @@ namespace El {
 			
 			this.timeout_id = 0;
 			this.timeout = 500;
-			
+
 			El.PieceFactory.populate( );
-			
+
 			this.cur_shape = Shape( );
 			this.next_shape = Shape( );
 			this.next_shape.set_random( );
@@ -88,6 +93,8 @@ namespace El {
 			this.cur_shape = this.next_shape;
 			this.next_shape.set_random( );
 
+            new_shape( next_shape.id );
+
 			stdout.printf( "name: %s\n", El.PieceFactory.pieces[this.cur_shape.id].name );
 
 			this.cur_point.x = ( this.frame_width - this.cur_shape.max.x ) / 2;
@@ -100,7 +107,7 @@ namespace El {
 			}
 		}
 
-		private void draw_square( Cairo.Context cr, double x, double y, int shape_id ) {
+		public void draw_square( Cairo.Context cr, double x, double y, int shape_id ) {
 			Color color = El.PieceFactory.pieces[shape_id].color;
 			cr.set_source_rgb( color.red, color.green, color.blue );
 			cr.rectangle( x + 1, y + 1, this.square_width - 2, this.square_height - 2 );
@@ -187,9 +194,11 @@ namespace El {
 				try_move( this.cur_shape, Point( ) { x = this.cur_point.x + 1, y = this.cur_point.y } );
 			} else if( event.keyval == Gdk.Key.space ) {
 				fall_down( );
-			} else if (event.keyval == Gdk.Key.d ) {
+			} else if( event.keyval == Gdk.Key.d ) {
 				one_line_down( );
-			}
+			} else if( event.keyval == Gdk.Key.p ) {
+                pause_cb( );
+            }
 						
 			return true;
 		}
@@ -240,6 +249,8 @@ namespace El {
 			foreach( Gee.LinkedList<int> line in this.frame ) {
 				if( !(Shape.EMPTY in line) ) {
 					stdout.printf( "line is full\n" );
+                    lines_num ++;
+                    line_removed( lines_num );
 					this.frame.remove( line );
 
 					add_empty_line( );
@@ -283,6 +294,9 @@ namespace El {
 			for( p.x = 0; p.x < this.frame_width; p.x ++ )
 				for( p.y = 0; p.y < this.frame_height; p.y ++ )
 					this.set_shape_at( Shape.EMPTY, p );
+
+            lines_num = 0;
+            line_removed( lines_num );
 		}
 
 		public void new_game_cb( ) {
