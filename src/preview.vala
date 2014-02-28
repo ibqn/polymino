@@ -48,7 +48,7 @@ namespace El {
         public void set_frame( El.Frame frame ) {
             this.frame = frame;
 
-            this.frame.new_shape.connect( (id) => {
+            this.frame.new_shape.connect(( id ) => {
                 shape_id = id;
 
                 shape.set_shape( shape_id );
@@ -57,7 +57,7 @@ namespace El {
                 point.y = ( height - shape.max.y ) / 2;
 
                 queue_draw ();
-            } );
+            });
         }
 
         private void draw_square( Cairo.Context cr, double x, double y, int shape_id ) {
