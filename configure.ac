@@ -12,6 +12,9 @@ AC_CONFIG_HEADERS([config.h])
 
 # I18n
 IT_PROG_INTLTOOL(0.50.0)
+GETTEXT_PACKAGE=polymino
+AC_SUBST([GETTEXT_PACKAGE])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[The gettext domain name])
 
 # Checks for programs.
 AC_PROG_CC

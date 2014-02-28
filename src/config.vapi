@@ -10,7 +10,7 @@ namespace Config {
 
 	/* Configured paths - these variables are not present in config.h, they are
 	 * passed to underlying C code as cmd line macros. */
-	public const string LOCALEDIR;  /* /usr/local/share/locale  */
-	public const string PKGDATADIR; /* /usr/local/share/polymino */
-	public const string PKGLIBDIR;  /* /usr/local/lib/polymino   */
+	public const string ELLOCALEDIR;  /* /usr/local/share/locale  */
+	public const string ELPKGDATADIR; /* /usr/local/share/polymino */
+	public const string ELPKGLIBDIR;  /* /usr/local/lib/polymino   */
 }

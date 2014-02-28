@@ -25,7 +25,11 @@ AM_CFLAGS = \
 	$(POLYMINO_CFLAGS) \
 	-Wall
 
-AM_CPPFLAGS = 
+AM_CPPFLAGS = \
+    -DGETTEXT_PACKAGE=\""$(GETTEXT_PACKAGE)"\" \
+    -DELLOCALEDIR=\""$(localedir)"\" \
+    -DELDATADIR=\""$(datadir)"\" \
+    $(NULL)
 
 
 AM_VALAFLAGS = \

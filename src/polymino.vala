@@ -17,11 +17,10 @@
   */
 
 int main( string[] args ) {
-    /*
-    Intl.bindtextdomain( Config.GETTEXT_PACKAGE, Config.LOCALEDIR );
+    Intl.bindtextdomain( Config.GETTEXT_PACKAGE, Config.ELLOCALEDIR );
     Intl.bind_textdomain_codeset( Config.GETTEXT_PACKAGE, "UTF-8" );
     Intl.textdomain( Config.GETTEXT_PACKAGE );
-    */
+
     var app = new El.Application( );
     return app.run( args );
 }
