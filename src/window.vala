@@ -28,6 +28,7 @@ namespace El {
         private GLib.Settings settings;
         private const GLib.ActionEntry[] action_entries = {
             { "new-game", new_game_callback },
+            { "about",    about_callback    },
         };
 
         public Window( Application app ) {
@@ -38,7 +39,9 @@ namespace El {
             settings = new Settings( "org.el.polymino.state.window" );
             settings.delay( );
 
-            destroy.connect( () => { settings.apply( ); } );
+            destroy.connect(( ) => {
+                settings.apply( );
+            });
 
             // Setup window geometry saving
             Gdk.WindowState window_state = (Gdk.WindowState)settings.get_int( "state" );
@@ -95,6 +98,27 @@ namespace El {
             }
 
             return base.configure_event( event );
+        }
+
+        private void about_callback( ) {
+            const string copyright = "Copyright © 2014 Evgeny Bobkin\n";
+
+            const string authors[] = {
+                "Evgeny Bobkin",
+                null
+            };
+
+            Gtk.show_about_dialog( this,
+                                   "program-name", _("Polymino"),
+                                    "logo-icon-name", "polymino",
+                                    "version", Config.PACKAGE_VERSION,
+                                    "comments", _("A classic game of fitting falling blocks together."),
+                                    "copyright", copyright,
+                                    "authors", authors,
+                                    "license-type", Gtk.License.GPL_2_0,
+                                    "wrap-license", false,
+                                    "translator-credits", _("translator-credits"),
+                                    null);
         }
     }
 }

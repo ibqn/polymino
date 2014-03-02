@@ -46,6 +46,10 @@ namespace El {
             var settings = Gtk.Settings.get_default( );
             settings.gtk_application_prefer_dark_theme = true;
 
+            var builder = new Gtk.Builder.from_resource( "/org/el/polymino/ui/menu.ui" );
+            var app_menu = builder.get_object( "appmenu" ) as GLib.MenuModel;
+            set_app_menu( app_menu );
+
             var css_provider = new Gtk.CssProvider( );
             try {
                 var file = File.new_for_uri( "resource:///org/el/polymino/css/styles.css" );
