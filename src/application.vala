@@ -46,20 +46,25 @@ namespace El {
             var settings = Gtk.Settings.get_default( );
             settings.gtk_application_prefer_dark_theme = true;
 
-            var builder = new Gtk.Builder.from_resource( "/org/el/polymino/ui/menu.ui" );
-            var app_menu = builder.get_object( "appmenu" ) as GLib.MenuModel;
-            set_app_menu( app_menu );
-
-            var css_provider = new Gtk.CssProvider( );
             try {
+                var builder = new Gtk.Builder.from_resource( "/org/el/polymino/ui/menu.ui" );
+                var app_menu = builder.get_object( "appmenu" ) as GLib.MenuModel;
+                set_app_menu( app_menu );
+            } catch( Error e ) {
+                warning( "loading app menu: %s", e.message );
+            }
+
+            try {
+                var css_provider = new Gtk.CssProvider( );
                 var file = File.new_for_uri( "resource:///org/el/polymino/css/styles.css" );
                 css_provider.load_from_file( file );
+
+                Gtk.StyleContext.add_provider_for_screen( Gdk.Screen.get_default( ),
+                                                          css_provider,
+                                                          Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION );
             } catch( Error e ) {
                 warning( "loading css: %s", e.message );
             }
-            Gtk.StyleContext.add_provider_for_screen( Gdk.Screen.get_default( ),
-                                                      css_provider,
-                                                      Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION );
         }
 
         protected override int handle_local_options( GLib.VariantDict options ) {
