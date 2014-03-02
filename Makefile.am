@@ -13,6 +13,8 @@ MAINTAINERCLEANFILES = \
 	ltmain.sh \
 	missing \
 	$(VALA_SOURCES:.vala=.c) \
+	*/*~ \
+	*/*/*~ \
 	*.stamp
 
 -include $(top_srcdir)/git.mk
