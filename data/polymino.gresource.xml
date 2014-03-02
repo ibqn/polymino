@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/org/el/polymino">
     <file>css/styles.css</file>
+    <file preprocess="xml-stripblanks">ui/menu.ui</file>
     <file preprocess="xml-stripblanks">ui/window.ui</file>
   </gresource>
 </gresources>
