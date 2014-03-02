@@ -1,0 +1,15 @@
+[Desktop Entry]
+_Name=Polymino
+_GenericName=Polymino
+_X-GNOME-FullName=Polymino
+_Comment=Fit falling blocks together
+_Keywords=tetris;
+Exec=polymino
+Icon=polymino
+Terminal=false
+Type=Application
+Categories=GTK;Game;
+StartupNotify=true
+DBusActivatable=true
+X-GNOME-UsesNotifications=true
+
